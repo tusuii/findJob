@@ -19,44 +19,45 @@ class FindJob():
 
             sleep(10)
 
-            try:
-                pop_up = 'None'
+            # try:
+            pop_up = 'None'
 
-                jobs = self.driver.find_elements_by_class_name('result')
+            jobs = self.driver.find_elements_by_id('resultsBody')
 
-                for job in jobs:
-                    result = job.get_attribute('innerHTML')
-                    soup = BeautifulSoup(result, 'html.parser')
+            for job in jobs:
+                result = job.get_attribute('innerHTML')
+                soup = BeautifulSoup(result, 'html.parser')
+                print(soup.attrs)
 
-                    title = soup.find(
-                        "a", class_="jobtitle").text.replace('\n', '')
-                    location = soup.find(class_="location").text
-                    employer = soup.find(
-                        class_="company").text.replace('\n', '').strip()
-                    try:
-                        salary = soup.find(class_="salary").text.replace(
-                            '\n', '').strip()
-                    except:
-                        salary = 'None'
+                title = soup.find(
+                    "a", class_="jobtitle").text.replace('\n', '')
+                location = soup.find(class_="location").text
+                employer = soup.find(
+                    class_="company").text.replace('\n', '').strip()
+                try:
+                    salary = soup.find(class_="salary").text.replace(
+                        '\n', '').strip()
+                except:
+                    salary = 'None'
 
-                    print(title, location, employer, salary)
+                print(title, location, employer, salary)
 
-                    summ = job.find_elements_by_class_name("summary")[0]
-                    summ.click()
-                    sleep(1)
-                    """ try:
-                        whole_job = self.driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div/div[1]')
-                        job_desc = whole_job.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div/div[1]/div/div[3]/div[2]/div[2]')
-                        print(job_desc)
-                    except NoSuchElementException:
-                        job_desc = 'None' """
+                summ = job.find_elements_by_class_name("summary")[0]
+                summ.click()
+                sleep(1)
+                """ try:
+                    whole_job = self.driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div/div[1]')
+                    job_desc = whole_job.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div/div[1]/div/div[3]/div[2]/div[2]')
+                    print(job_desc)
+                except NoSuchElementException:
+                    job_desc = 'None' """
 
-                    dataframe = dataframe.append(
-                        {'Title': title, 'Location': location, 'Employer': employer}, ignore_index=True)
-            except:
-                pop_up = self.driver.find_element_by_xpath(
-                    '/html/body/div[4]/div[1]/button')
-                pop_up.click()
+                dataframe = dataframe.append(
+                    {'Title': title, 'Location': location, 'Employer': employer}, ignore_index=True)
+            # except:
+            #     pop_up = self.driver.find_element_by_xpath(
+            #         '/html/body/div[5]/div[2]/div[1]')
+            #     pop_up.click()
             dataframe.to_csv("jobs.csv", index=False)
 
 
