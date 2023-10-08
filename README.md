@@ -26,10 +26,3 @@ Before running the script, make sure you have the following prerequisites instal
 7. The script will also attempt to click on each job listing to reveal more details, but this part of the code is currently commented out. You can uncomment and modify it as needed to scrape additional information.
 
 8. The scraped job data will be stored in a CSV file named "jobs.csv" in the same directory as the script.
-
-## Important Notes
-- Please be aware that web scraping might be subject to terms of service of the website you are scraping from. Ensure that you are allowed to scrape data from Indeed before using this script for any significant scraping operation.
-
-- The script may need adjustments if the structure of the Indeed website changes, as it relies on specific HTML elements for data extraction.
-
-- Depending on your internet connection and the number of job listings you want to scrape, the script may take some time to run. Adjust the `sleep` durations in the code if necessary.
