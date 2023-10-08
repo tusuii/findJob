@@ -1,6 +1,5 @@
 # Find Job
 
-## Overview
 This Python script is designed to help you search for job listings related to data science on the Indeed job search platform. It utilizes web scraping techniques to extract job information and store it in a CSV file for further analysis.
 
 ## Prerequisites
